@@ -26,7 +26,9 @@ Link bin/filter_parser.js and bin/filter_compiler.js (in that order).
 Feel free to concat and minify them:)
 
 This will expose FilterCompiler class with a single public method `compile(query)` which returns a record with following fields:
-* `condition` - is the Abstract Syntax Tree of the `query`. It is `{op:"never"}` in case parsing failed. (Not the best way for handling errors, I guess, but I think it is semantically valid)
+* `condition` - is the Abstract Syntax Tree of the `query`. It is `{op:"never"}` in case parsing failed. (Not the best way for handling errors, I guess, but I think it is semantically valid). This is intended to be used in cases like: 
+* * sending the query to the server, in order to convert it into an SQL query or something?
+* * comparing if the new query is equals to the old query (by means of _.isEqual ) as it is impossible to compare the actual function (`predicate`), for example to show cached results etc.
 * `predicate` - is the function which accepts or rejects an object according to the query
 
 So you can use this like this:
