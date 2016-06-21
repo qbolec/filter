@@ -1,8 +1,8 @@
 start
-  = query
+  = " "* q:query " "* {return q}
 
 query
-  = left:predicate " " right:query {return {op:"and", children: [left,right]};}
+  = left:predicate " "+ right:query {return {op:"and", children: [left,right]};}
   / predicate:predicate
 
 predicate
